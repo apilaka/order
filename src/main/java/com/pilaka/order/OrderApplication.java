@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.pilaka.order")
+@ComponentScan(basePackages = "com.pilaka")
 public class OrderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrderApplication.class, args);
@@ -21,20 +21,20 @@ public class OrderApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-	@Bean
-	@LoadBalanced
-	public OrderMapper orderMapper(){
-
-        return new OrderMapper() {
-			@Override
-			public Order mapOrderDTOToOrder(OrderDTO orderDTO) {
-				return null;
-			}
-
-			@Override
-			public OrderDTO mapOrderToOrderDTO(Order order) {
-				return null;
-			}
-		};
-    }
+//	@Bean
+//	@LoadBalanced
+//	public OrderMapper orderMapper(){
+//
+//        return new OrderMapper() {
+//			@Override
+//			public Order mapOrderDTOToOrder(OrderDTO orderDTO) {
+//				return null;
+//			}
+//
+//			@Override
+//			public OrderDTO mapOrderToOrderDTO(Order order) {
+//				return null;
+//			}
+//		};
+//    }
 }

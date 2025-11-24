@@ -2,6 +2,7 @@ package com.pilaka.order.service;
 
 import com.pilaka.order.dto.*;
 import com.pilaka.order.entity.Order;
+
 import com.pilaka.order.mapper.OrderMapper;
 import com.pilaka.order.repo.OrderRepo;
 
@@ -22,6 +23,9 @@ public class OrderService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    OrderMapper orderMapper;
 
 
     public OrderDTO saveOrderInDb(OrderDTOFromFE orderDetails) {
