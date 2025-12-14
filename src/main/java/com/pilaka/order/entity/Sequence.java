@@ -1,17 +1,20 @@
 package com.pilaka.order.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 @Document(collection = "sequence")
-@Data
+//@Document(collection = "sequence")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Sequence {
     @Id
     private String id;
-    private Long sequence;
+    private int sequenceId;
+
+    public int getSeq() {
+        return sequenceId;
+    }
 }

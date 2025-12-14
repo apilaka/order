@@ -1,8 +1,5 @@
 package com.pilaka.order;
 
-import com.pilaka.order.dto.OrderDTO;
-import com.pilaka.order.entity.Order;
-import com.pilaka.order.mapper.OrderMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -21,20 +18,5 @@ public class OrderApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-//	@Bean
-//	@LoadBalanced
-//	public OrderMapper orderMapper(){
-//
-//        return new OrderMapper() {
-//			@Override
-//			public Order mapOrderDTOToOrder(OrderDTO orderDTO) {
-//				return null;
-//			}
-//
-//			@Override
-//			public OrderDTO mapOrderToOrderDTO(Order order) {
-//				return null;
-//			}
-//		};
-//    }
+
 }

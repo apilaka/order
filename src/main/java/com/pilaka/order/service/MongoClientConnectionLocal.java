@@ -13,39 +13,18 @@ import org.bson.Document;
 
 public class MongoClientConnectionLocal {
     public static void main(String[] args) {
-        String connectionString = "mongodb+srv://apilaka9:saibaba@cluster0.3de2w.mongodb.net/?appName=Cluster0";
-
-        ServerApi serverApi = ServerApi.builder()
-                .version(ServerApiVersion.V1)
-                .build();
-
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(connectionString))
-                .serverApi(serverApi)
-                .build();
-
-        // Create a new client and connect to the server
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            try {
-                // Send a ping to confirm a successful connection
-                MongoDatabase database = mongoClient.getDatabase("admin");
-                database.runCommand(new Document("ping", 1));
-                System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-            } catch (MongoException e) {
-                e.printStackTrace();
-            }
-        }
 
         createTestDocument();
+
     }
 
     static void createTestDocument() {
 
-        String connectionString = "mongodb+srv://apilaka9:saibaba@cluster0.3de2w.mongodb.net/?appName=Cluster0";
+        String connectionString = "mongodb://admin:secret123@localhost:27017/orderdb?authSource=admin";
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
 
             // Select database
-            MongoDatabase database = mongoClient.getDatabase("sampleDB");
+            MongoDatabase database = mongoClient.getDatabase("orderdb");
 
             // Select collection
             MongoCollection<Document> collection = database.getCollection("users");

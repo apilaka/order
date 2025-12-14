@@ -1,9 +1,10 @@
 package com.pilaka.order.controller;
 
-
 import com.pilaka.order.dto.OrderDTO;
 import com.pilaka.order.dto.OrderDTOFromFE;
 import com.pilaka.order.entity.Order;
+//import com.pilaka.order.mapper.OrderMapper;
+import com.pilaka.order.repo.OrderRepo;
 import com.pilaka.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,24 +20,35 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+//
+//    @Autowired
+//    OrderMapper orderMapper;
 
-    @PostMapping("/saveOrder")
-    public ResponseEntity<OrderDTO> saveOrder(@RequestBody OrderDTOFromFE orderDetails){
+    @Autowired
+    OrderRepo orderRepo;
+
+    @PostMapping(value="/saveOrder" , produces = "application/json")
+    public ResponseEntity<Order> saveOrder(@RequestBody Order orderDetails){
         System.out.println("Saving Order from Order Controller");
-        OrderDTO orderSavedInDB = orderService.saveOrderInDb(orderDetails);
-        return new ResponseEntity<>(orderSavedInDB, HttpStatus.CREATED);
+    this.orderRepo.save(orderDetails);
+        return new ResponseEntity<>(orderDetails, HttpStatus.CREATED);
     }
-
-    @PostMapping("/saveNewOrder")
-    public ResponseEntity<Order> saveNewOrder(@RequestBody OrderDTOFromFE orderDetails){
+    @PostMapping( value="/saveNewOrder" , produces = "application/json" )
+    public ResponseEntity<OrderDTOFromFE> saveNewOrder(@RequestBody OrderDTOFromFE orderDetails){
         System.out.println("Saving Order from Order New Controller");
-        Order orderSavedInDB = orderService.saveNewOrder(orderDetails);
-        return new ResponseEntity<>(orderSavedInDB, HttpStatus.CREATED);
+        this.orderService.saveOrderInDb(orderDetails);
+        return new ResponseEntity<>(orderDetails, HttpStatus.CREATED);
     }
-
     @GetMapping("/listOrders")
     public List<Order> listOrders(){
         return orderService.listOrders();
+    }
+
+
+    @PostMapping(value="/createOrder" , produces = "application/json")
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTOFromFE orderDetails){
+        OrderDTO orderSavedInDB = orderService.saveOrderInDb(orderDetails);
+        return new ResponseEntity<>(orderSavedInDB, HttpStatus.CREATED);
     }
 
 }

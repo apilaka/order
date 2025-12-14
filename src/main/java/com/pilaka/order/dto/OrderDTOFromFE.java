@@ -1,18 +1,44 @@
 package com.pilaka.order.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+//@Document(collection = "orders")
+//@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class OrderDTOFromFE {
 
-    private List<FoodItemsDTO> foodItemsList;
-    private Integer userId;
+    private List<FoodItemsDTO> foodItems;
+    private UserDTO userDTO;
     private Restaurant restaurant;
 
+    public List<FoodItemsDTO> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(List<FoodItemsDTO> foodItems) {
+        this.foodItems = foodItems;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }
